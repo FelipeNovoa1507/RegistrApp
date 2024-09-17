@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>tres: Input's</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="menu"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1>Información solicitada</h1>
+
+  <label>Nombre:</label>
+  <ion-input type="text" placeholder="Ingrese su nombre"></ion-input>
+
+  <ion-input type="text" placeholder="Ingrese apellido" label="Apellido"></ion-input>
+
+  <ion-input type="number" placeholder="Ingrese su edad" label="Edad"></ion-input>
+  <ion-input type="email" placeholder="Ingrese su correo" label="Correo"></ion-input>
+
+  <ion-input type="email" placeholder="Ingrese correo" label="Correo 2" labelPlacement="floating">    
+  </ion-input>
+
+  <ion-input type="email" placeholder="Ingrese correo" label="Correo 2" labelPlacement="fixed">    
+  </ion-input>
+  
+  <ion-input type="email" placeholder="Ingrese correo" label="Correo 3" labelPlacement="floating"
+      helperText="Ingrese un correo adicional"
+      errorText="Formato de correo erroneo"
+      ngModel email>    
+  </ion-input>
+
+  <ion-input type="text" placeholder="Carrera" label="Carrera" [clearInput]="true"></ion-input>
+  <ion-input type="text" placeholder="Obs." label="Observaciones" [counter]="true" maxlength="30"></ion-input>
+
+  <ion-input type="number" label="Valor Mensual" fill="solid"></ion-input>
+  <ion-input type="number" label="Valor anual" fill="outline" color="success"></ion-input>
+
+  <ion-datetime></ion-datetime>
+</ion-content>

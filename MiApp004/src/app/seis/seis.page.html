@@ -1,0 +1,71 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>seis</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="menu"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="3">Nombre</ion-col>
+      <ion-col size="9"> {{nombre}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">Edad</ion-col>
+      <ion-col size="9"> {{edad}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">Mensaje</ion-col>
+      <ion-col size="9"> {{mensaje}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" color="success">
+          <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">        
+        <ion-button expand="block" color="danger">
+          <ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <br><br><br>
+  <ion-button (click)="mostrar()">
+    <ion-icon slot="icon-only" name="eye"     *ngIf="!permitir"></ion-icon>
+    <ion-icon slot="icon-only" name="eye-off" *ngIf="permitir"></ion-icon>
+    <!-- Ejercicio 8: agregar boton ojo cerrado de acuerdo si se ve o no la tabla -->
+  </ion-button>
+
+  <ion-text color="primary" *ngIf="permitir">
+
+    <h1>Lista de asignaturas</h1>
+    <ion-list>
+      <ion-item *ngFor="let asignatura of asignaturas">
+        <ion-label>{{ asignatura.nombre | uppercase }}</ion-label> <!-- lowercase -->
+        <!-- Ejercicio: Mostrar solo las 3 primeras letras de la sigla -->
+        <ion-label>{{ asignatura.nombre | uppercase | slice:0:3 }}</ion-label>
+        <ion-label>{{ asignatura.nombre.substring(0,3).toUpperCase() }}</ion-label>
+        <!-- Ejercicio: Usando pipe, redondear la nota -->
+        <ion-label>{{ asignatura.nota | number:'1.0-0'  }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+  </ion-text>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Grilla</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

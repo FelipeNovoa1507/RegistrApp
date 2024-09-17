@@ -1,0 +1,10 @@
+{
+  "typescript.preferences.autoImportFileExcludePatterns": ["@ionic/angular/common", "@ionic/angular/standalone"],
+  "eslint.options": {
+    "configFile": "./ejemplos ionic/RegistrApp/.eslintrc.json"
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ]
+}

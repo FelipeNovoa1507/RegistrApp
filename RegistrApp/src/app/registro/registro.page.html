@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registro de Usuarios</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="main"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1 style="text-align: center;">Información solicitada</h1>
+
+  <br>
+  <label>Nombre y Apellido:</label>
+  <ion-input type="text" placeholder="Ingrese su nombre completo"></ion-input>
+
+  <ion-input type="number" placeholder="Ingrese su edad" label="Edad"></ion-input>
+
+  <ion-input type="email" placeholder="Ingrese correo" label="Correo" labelPlacement="floating"
+      helperText="xxxxxx@xxxxx.xx"
+      errorText="Formato de correo erroneo"
+      ngModel email>    
+  </ion-input>
+
+  <ion-input type="text" placeholder="Carrera" label="Carrera" [clearInput]="true"></ion-input> 
+
+</ion-content>
