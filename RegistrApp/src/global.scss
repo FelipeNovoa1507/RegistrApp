@@ -27,10 +27,6 @@
 
 
 
-body {
-  --ion-background-color: var(--ion-color-light);
-  --ion-text-color: var(--ion-color-grey);
-}
 
 
 ion-toolbar {
@@ -43,12 +39,42 @@ ion-toolbar {
 
 ion-menu ion-content {
     --background: var(--ion-color-duocblue);
-    --ion-backgorund-color: var(--ion-color-duocblue);
+} 
+
+
+.custom-menu {
+  --background: var(--ion-color-duocblue) !important;
+  --ion-background-color: var(--ion-color-duocblue) !important;
+  --ion-toolbar-background: var(--ion-color-duocblue) !important;
+
+  ion-content {
+    --background: var(--ion-color-duocblue) !important;
+  }
+
+  ion-list-header,
+  ion-note {
+    color: white !important; /* Cambia esto al color que desees */
+  }
+
+  ion-item {
+    --background: var(--ion-color-duocblue) !important;
+    color: white !important; /* Cambia esto al color que desees */
+  }
+
+  ion-item.ion-selected {
+    --background:  !important; /* Color de fondo para el ítem seleccionado */
+    color: grey !important; /* Color de texto para el ítem seleccionado */
+  }
+
+  ion-icon {
+    color: white !important; /* Cambia esto al color que desees */
+  }
 }
-  
 
+ion-menu-button {
+  --color: var(--ion-color-light);
+}
 
-
-
-
-
+ion-back-button {
+  --color: var(--ion-color-light);
+}
