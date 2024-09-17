@@ -1,0 +1,17 @@
+.custom-input {
+  padding: 10px !important; /* Ajusta el valor del padding según tus necesidades */
+  box-sizing: border-box !important; /* Asegúrate de que el padding se incluya en el tamaño total del elemento */
+}
+
+ion-item ion-select {
+  margin-left: auto !important; /* Empuja el ion-select hacia el final del ion-item */
+}
+
+.custom-select {
+  margin-left: auto; /* Empuja el ion-select hacia el final del ion-item */
+  
+}
+
+ion-button{
+    padding: 10px !important; /* Ajusta el valor del padding según tus necesidades */
+}

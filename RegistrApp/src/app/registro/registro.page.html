@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>Registro de Usuarios</ion-title>
     <ion-buttons slot="end">
@@ -11,17 +11,51 @@
   <h1 style="text-align: center;">Información solicitada</h1>
 
   <br>
-  <label>Nombre y Apellido:</label>
-  <ion-input type="text" placeholder="Ingrese su nombre completo"></ion-input>
+  <ion-input type="text" placeholder="Ingrese su nombre completo" label="Nombre y Apellido:" labelPlacement="floating"
+    helperText="Juan Perez"
+    errorText="Formato de nombre erroneo"
+    class="custom-input">    
+  </ion-input>
 
-  <ion-input type="number" placeholder="Ingrese su edad" label="Edad"></ion-input>
+  <ion-input type="number" placeholder="Ingrese edad" label="Edad" labelPlacement="floating"
+      helperText="22"
+      errorText="Formato de edad erroneo"
+      class="custom-input">    
+  </ion-input>
+
+  <ion-input type="number" placeholder="Ingrese Semestre" label="Edad" labelPlacement="floating"
+      helperText="22"
+      errorText="Formato de edad erroneo"
+      class="custom-input">    
+  </ion-input>
+
+  <ion-item>
+    <ion-label>Semestre</ion-label>
+    <ion-select class="custom-select" placeholder="Seleccione una opción">
+      <ion-select-option class="custom-select" value="opcion1">1</ion-select-option>
+      <ion-select-option class="custom-select" value="opcion2">2</ion-select-option>
+      <ion-select-option class="custom-select" value="opcion3">3</ion-select-option>
+      <ion-select-option class="custom-select" value="opcion4">4</ion-select-option>
+      <ion-select-option class="custom-select" value="opcion5">5</ion-select-option>
+      <ion-select-option class="custom-select" value="opcion6">6</ion-select-option>
+      <ion-select-option class="custom-select" value="opcion7">7</ion-select-option>
+      <ion-select-option class="custom-select" value="opcion8">8</ion-select-option>
+    </ion-select>
+  </ion-item>
 
   <ion-input type="email" placeholder="Ingrese correo" label="Correo" labelPlacement="floating"
       helperText="xxxxxx@xxxxx.xx"
       errorText="Formato de correo erroneo"
-      ngModel email>    
+      ngModel email class="custom-input">    
   </ion-input>
 
-  <ion-input type="text" placeholder="Carrera" label="Carrera" [clearInput]="true"></ion-input> 
+  <ion-input type="text" placeholder="Ingrese Carrera" label="Carrera" labelPlacement="floating"
+      helperText="Ingeniería en Informática"
+      errorText="Formato de Carrera erroneo"
+      class="custom-input">    
+  </ion-input>
+
+
+  <ion-button expand="block" color="warning">Enviar Formulario</ion-button>
 
 </ion-content>
