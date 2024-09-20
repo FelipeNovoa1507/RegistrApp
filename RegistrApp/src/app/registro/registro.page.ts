@@ -1,33 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage {
-  rut: string;
-  rutInvalido: boolean;
-  password: string;
-  passwordInvalida: boolean;
-  confirmPassword: string;
-  confirmPasswordInvalida: boolean;
+export class RegistroPage implements OnInit {
+  registroForm: FormGroup;
 
-  constructor() {
-    this.rut = '';
-    this.rutInvalido = false;
-    this.password = '';
-    this.passwordInvalida = false;
-    this.confirmPassword = '';
-    this.confirmPasswordInvalida = false;
+  constructor(public formBuilder: FormBuilder) {
+    this.registroForm = this.formBuilder.group({
+      nombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      rut: ['', [Validators.required, this.validarRut]],
+      edad: ['', [Validators.required, Validators.min(18)]],
+      correo: ['', [Validators.required, Validators.email]],
+      carrera: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', Validators.required]
+    }, { validator: this.passwordMatchValidator });
   }
 
-  validarRut() {
-    this.rutInvalido = !this.validarRutHelper(this.rut);
+  ngOnInit() {
+    // Inicialización del componente o lógica adicional
+    console.log('RegistroPage inicializado');
   }
 
-  validarRutHelper(rut: string): boolean {
-    rut = rut.replace("-", "").replace(".", "");
+  validarRut(control: AbstractControl): { [key: string]: boolean } | null {
+    const rut = control.value.replace("-", "").replace(".", "");
     const cuerpo = rut.slice(0, -1);
     const dv = rut.slice(-1).toUpperCase();
 
@@ -43,14 +43,19 @@ export class RegistroPage {
     const resto = suma % 11;
     const dvCalculado = resto === 0 ? '0' : resto === 1 ? 'K' : String(11 - resto);
 
-    return dv === dvCalculado;
+    return dv === dvCalculado ? null : { rutInvalido: true };
   }
 
-  validarPassword() {
-    this.passwordInvalida = this.password.length < 8;
+  passwordMatchValidator(form: FormGroup) {
+    return form.get('password')?.value === form.get('confirmPassword')?.value
+      ? null : { mismatch: true };
   }
 
-  validarConfirmPassword() {
-    this.confirmPasswordInvalida = this.password !== this.confirmPassword;
+  onSubmit() {
+    if (this.registroForm.valid) {
+      console.log('Formulario válido', this.registroForm.value);
+    } else {
+      console.log('Formulario inválido');
+    }
   }
 }

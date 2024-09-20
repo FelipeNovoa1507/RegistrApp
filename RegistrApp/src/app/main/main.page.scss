@@ -6,3 +6,14 @@ h1{
     text-align: center;
     padding-top: 50px;
 }
+
+.login-container {
+    display: flex;
+    justify-content: center;
+  }
+
+.login-logo {
+    width: 150px; /* Ajusta el tamaño de la imagen según sea necesario */
+    margin-top: 10px;
+    margin-bottom: 20px; /* Espacio entre la imagen y la tarjeta */
+  }

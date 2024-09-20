@@ -1,0 +1,49 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-logo {
+  width: 150px; /* Ajusta el tamaño de la imagen según sea necesario */
+  margin-top: 10px;
+  margin-bottom: 20px; /* Espacio entre la imagen y la tarjeta */
+}
+
+ion-card {
+  width: 100%;
+  max-width: 600px;
+}
+
+ion-button {
+  margin-top: 30px;
+  margin-bottom: 25px;
+}
+
+ion-card-title {
+  text-align: center;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  margin-top: 25px;
+}
+
+
+.checkbox-wrapper ion-label {
+  margin-left: 8px; /* Ajusta el espacio entre el checkbox y el label */
+  padding-left: 0; /* Elimina el padding izquierdo del label */
+}
+
+.link-text {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: var(--ion-color-primary);
+    text-decoration: none;
+  }
+  
+  .link-text:hover {
+    text-decoration: underline;
+  }

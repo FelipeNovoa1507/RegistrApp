@@ -47,6 +47,14 @@ const routes: Routes = [
     path: 'ejercicio-promedio',
     loadChildren: () => import('./ejercicio-promedio/ejercicio-promedio.module').then( m => m.EjercicioPromedioPageModule)
   },
+  {
+    path: 'ocho',
+    loadChildren: () => import('./ocho/ocho.module').then( m => m.OchoPageModule)
+  },
+  {
+    path: 'nueve',
+    loadChildren: () => import('./nueve/nueve.module').then( m => m.NuevePageModule)
+  },
 ];
 
 @NgModule({
