@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Reestablecer Contraseña</ion-title>
+    <ion-title>Restablecer Contraseña</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="main"></ion-back-button>
     </ion-buttons>
@@ -11,4 +11,69 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-</ion-content>
+  <div class="login-container">
+    <img src="assets/img/DuocUC.png" alt="Logo" class="login-logo">
+  </div>
+  <ion-card>
+    <ion-card-content>
+      <ion-input 
+        type="password" 
+        placeholder="Ingrese su contraseña actual" 
+        label="Contraseña Actual:" 
+        labelPlacement="floating"
+        errorText="Formato de contraseña erroneo"
+        class="custom-input"
+        required>
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+
+      <ion-input 
+        type="password" 
+        placeholder="Ingrese su contraseña nueva" 
+        label="Contraseña Nueva:" 
+        labelPlacement="floating"
+        errorText="Formato de contraseña erroneo"
+        class="custom-input"
+        required>
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+
+      <ion-input 
+        type="password" 
+        placeholder="Confirme su contraseña" 
+        label="Confirmar Contraseña:" 
+        labelPlacement="floating"
+        errorText="Las contraseñas no coinciden"
+        class="custom-input"
+        required>
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+      <ion-button expand="block" color="warning">Restablecer Contraseña</ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header class="center-text">
+      <ion-card-title>Olvidaste tu actual contraseña?</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-label class="center-text">
+        Ingresa tu correo electrónico con el que te registraste y te enviaremos un enlace para restablecer tu contraseña.
+      </ion-label>
+      
+      <ion-item>
+        <ion-input type="email" 
+        placeholder="Ingrese correo" 
+        label="Correo" 
+        labelPlacement="floating"
+        class="custom-input"></ion-input>
+      </ion-item>
+      
+      <ion-button expand="block" color="warning">Enviar Correo</ion-button>
+      
+    </ion-card-content>
+    </ion-card>
+  </ion-content>
+  

@@ -38,6 +38,18 @@ const routes: Routes = [
   {
     path: 'restablecercon',
     loadChildren: () => import('./restablecercon/restablecercon.module').then( m => m.RestablecerconPageModule)
+  },
+  {
+    path: 'asignaturas',
+    loadChildren: () => import('./asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule)
+  },
+  {
+    path: 'asistencias',
+    loadChildren: () => import('./asistencias/asistencias.module').then( m => m.AsistenciasPageModule)
+  },
+  {
+    path: 'registro-asistencia',
+    loadChildren: () => import('./registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
   }
 ];
 

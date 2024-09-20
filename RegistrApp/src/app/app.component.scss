@@ -114,3 +114,17 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+.submenu-item {
+  padding-left: 20px; /* Ajusta este valor según sea necesario */
+}
+
+.submenu-container {
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  max-height: 0;
+}
+
+.submenu-container.expanded {
+  max-height: 500px; /* Ajusta este valor según sea necesario */
+}

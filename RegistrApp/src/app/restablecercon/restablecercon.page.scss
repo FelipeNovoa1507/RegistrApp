@@ -1,0 +1,32 @@
+.login-logo {
+    width: 200px; /* Ajusta el tamaño de la imagen según sea necesario */
+    margin-top: 20px;
+    margin-bottom: 20px; /* Espacio entre la imagen y la tarjeta */
+  }
+
+.login-container {
+    display: flex;
+    justify-content: center;
+}
+ 
+ion-label {
+    width: 200px; /* Ajusta el tamaño de la imagen según sea necesario */
+    margin-top: 10px;
+    margin-bottom: 30px; 
+    justify-content: center;
+}
+
+ion-button{
+    padding-top: 20px;
+}
+
+.custom-input {
+    padding: 10px !important; /* Ajusta el valor del padding según tus necesidades */
+    box-sizing: border-box !important; /* Asegúrate de que el padding se incluya en el tamaño total del elemento */
+  }
+  
+.center-text {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
