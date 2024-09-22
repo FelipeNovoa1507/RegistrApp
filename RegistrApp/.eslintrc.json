@@ -5,7 +5,7 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["./ejemplos ionic/RegistrApp/tsconfig.json"],
+        "project": ["/Users/breezy/Downloads/BreezysRepository/Ejemplos ionic/RegistrApp/tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [

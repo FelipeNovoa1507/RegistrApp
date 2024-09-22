@@ -8,7 +8,7 @@
 .login-logo {
   width: 150px; /* Ajusta el tamaño de la imagen según sea necesario */
   margin-top: 10px;
-  margin-bottom: 20px; /* Espacio entre la imagen y la tarjeta */
+  margin-bottom: 10px; /* Espacio entre la imagen y la tarjeta */
 }
 
 ion-card {
@@ -46,4 +46,23 @@ ion-card-title {
   
   .link-text:hover {
     text-decoration: underline;
+  }
+
+  #contra{
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .password-toggle-button {
+    margin-left: -40px; /* Ajusta este valor según sea necesario */
+    z-index: 10;
+    padding: 0; /* Elimina el padding del botón */
+    height: auto; /* Ajusta la altura del botón */
+    min-width: 0; /* Asegura que el ancho mínimo sea cero */
+    min-height: 0; /* Asegura que la altura mínima sea cero */
+  }
+  .password-toggle-button ion-icon {
+    margin-right: -15px; /* Ajusta este valor según sea necesario */
+    
   }

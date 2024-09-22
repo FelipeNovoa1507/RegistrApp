@@ -7,92 +7,145 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <h1>Información solicitada</h1>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    <img src="assets/img/DuocUC.png" alt="Logo" class="login-logo"> <!-- Añadir la imagen aquí -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Registro de Información.</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+          <ion-input 
+            type="text" 
+            placeholder="Ingrese su nombre completo" 
+            label="Nombre y Apellido:" 
+            labelPlacement="floating"
+            formControlName="nombre"
+            helperText="Juan Perez"
+            errorText="Formato de nombre erroneo"
+            class="custom-input">    
+          </ion-input>
+      
+          <ion-input  
+            type="text" 
+            placeholder="Ingrese su Rut completo" 
+            label="Rut:" 
+            labelPlacement="floating"
+            formControlName="rut"
+            helperText="12345678-9"
+            errorText="Formato de Rut erroneo"
+            class="custom-input">    
+          </ion-input>
+      
+          <ion-input 
+            type="number" 
+            placeholder="Ingrese edad" 
+            label="Edad:" 
+            labelPlacement="floating"
+            formControlName="edad"
+            helperText="22"
+            errorText="Formato de edad erroneo"
+            class="custom-input">    
+          </ion-input>
 
-  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
-    <ion-input 
-      type="text" 
-      placeholder="Ingrese su nombre completo" 
-      label="Nombre y Apellido:" 
-      labelPlacement="floating"
-      formControlName="nombre"
-      helperText="Juan Perez"
-      errorText="Formato de nombre erroneo"
-      class="custom-input">    
-    </ion-input>
+          <ion-select 
+            class="custom-input underline-select"
+            formControlName="genero" 
+            placeholder="Seleccione su Género" 
+            label="Género:"
+            labelPlacement="floating">
+              <ion-select-option value="Masculino">Masculino</ion-select-option>
+              <ion-select-option value="Femenino">Femenino</ion-select-option>
+              <ion-select-option value="Otro">Otro</ion-select-option>
+              <ion-select-option value="noResponse">Prefiero no responder</ion-select-option>
+          </ion-select>
+      
+          <ion-input 
+            type="email" 
+            placeholder="Ingrese correo" 
+            label="Correo:" 
+            labelPlacement="floating"
+            formControlName="correo"
+            helperText="xxxxxx@xxxxx.xx"
+            errorText="Formato de correo erroneo"
+            class="custom-input">    
+          </ion-input>
+      
+          <ion-input 
+            type="text" 
+            placeholder="Carrera" 
+            label="Carrera:" 
+            labelPlacement="floating"
+            formControlName="carrera" 
+            helperText="Ingeniería en Informática"
+            errorText="Formato de texto Erróneo"
+            [clearInput]="true" 
+            class="custom-input">
+          </ion-input>
 
-    <ion-input  
-      type="text" 
-      placeholder="Ingrese su Rut completo" 
-      label="Rut" 
-      labelPlacement="floating"
-      formControlName="rut"
-      helperText="12345678-9"
-      errorText="Formato de Rut erroneo"
-      class="custom-input">    
-    </ion-input>
 
-    <ion-input 
-      type="number" 
-      placeholder="Ingrese edad" 
-      label="Edad" 
-      labelPlacement="floating"
-      formControlName="edad"
-      helperText="22"
-      errorText="Formato de edad erroneo"
-      class="custom-input">    
-    </ion-input>
+          <ion-select 
+            class="custom-input underline-select"
+            formControlName="semestre" 
+            placeholder="Seleccione su semestre" 
+            label="Semestre:"
+            labelPlacement="floating">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+              <ion-select-option value="5">5</ion-select-option>
+              <ion-select-option value="6">6</ion-select-option>
+              <ion-select-option value="7">7</ion-select-option>
+              <ion-select-option value="8">8</ion-select-option>
+          </ion-select>
+      
+          <div id="contra" class="custom-input">
+            <ion-input 
+              [type]="passwordType" 
+              placeholder="Ingrese su Contraseña" 
+              label="Contraseña:" 
+              labelPlacement="floating"
+              formControlName="password"
+              helperText="12345678Fn@"
+              errorText="Formato de contraseña incorrecto"
+              required>
+            </ion-input>
+            <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="togglePasswordVisibility()">
+              <ion-icon [name]="passwordIcon"></ion-icon>
+            </ion-button>
+          </div>
 
-    <ion-input 
-      type="email" 
-      placeholder="Ingrese correo" 
-      label="Correo" 
-      labelPlacement="floating"
-      formControlName="correo"
-      helperText="xxxxxx@xxxxx.xx"
-      errorText="Formato de correo erroneo"
-      class="custom-input">    
-    </ion-input>
+          <div id="contra" class="custom-input">
+            <ion-input 
+              [type]="confirmPasswordType" 
+              placeholder="Confirme su Contraseña" 
+              label="Confirmar Contraseña:" 
+              labelPlacement="floating"
+              formControlName="confirmPassword"
+              helperText="12345678Fn@"
+              errorText="Las contraseñas no coinciden"
+              required>
+            </ion-input>
+            <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="toggleConfirmPasswordVisibility()">
+              <ion-icon [name]="confirmPasswordIcon"></ion-icon>
+            </ion-button>
+          </div>
+      
+          
 
-    <ion-input 
-      type="text" 
-      placeholder="Carrera" 
-      label="Carrera" 
-      formControlName="carrera" 
-      helperText="Inegnieria en Informática"
-      errorText="Formato de texto Erróneo"
-      [clearInput]="true" 
-      class="custom-input"></ion-input>
+          
 
-    <ion-input 
-      type="password" 
-      placeholder="Ingrese su contraseña" 
-      label="Contraseña" 
-      labelPlacement="floating"
-      formControlName="password"
-      helperText="12345678Fn@"
-      errorText="Formato de contraseña erroneo"
-      class="custom-input"
-      required>
-      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-    </ion-input>
-
-    <ion-input 
-      type="password" 
-      placeholder="Confirme su contraseña" 
-      label="Confirmar Contraseña" 
-      labelPlacement="floating"
-      formControlName="confirmPassword"
-      helperText="12345678Fn@"
-      errorText="Las contraseñas no coinciden"
-      class="custom-input"
-      required>
-      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-    </ion-input>
-
-    <ion-button expand="block" color="warning" type="submit" >Enviar Formulario</ion-button>
-  </form>
-
-  
+          <div class="checkbox-wrapper-inline">
+            <ion-checkbox></ion-checkbox>
+            <ion-label>He leído y acepto los <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" >Términos y Condiciones y la Política de Privacidad.</a></ion-label>
+          </div>
+      
+          <ion-button expand="block" color="warning" type="submit" >Enviar Formulario</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
+

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms'; // Importar FormsModule
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -16,7 +17,9 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     FormsModule // Añadir FormsModule a los imports
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

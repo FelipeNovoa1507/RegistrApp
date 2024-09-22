@@ -16,38 +16,53 @@
   </div>
   <ion-card>
     <ion-card-content>
-      <ion-input 
-        type="password" 
-        placeholder="Ingrese su contraseña actual" 
-        label="Contraseña Actual:" 
-        labelPlacement="floating"
-        errorText="Formato de contraseña erroneo"
-        class="custom-input"
-        required>
-        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-      </ion-input>
+      <div id="contra" class="custom-input">
+        <ion-input 
+          [type]="actualPasswordType" 
+          placeholder="Ingrese su Contraseña Actual" 
+          label="Contraseña Actual:" 
+          labelPlacement="floating"
+          helperText="12345678Fn@"
+          errorText="Formato de contraseña incorrecto"
+          required>
+        </ion-input>
+        <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="toggleActualPasswordVisibility()">
+          <ion-icon [name]="actualPasswordIcon"></ion-icon>
+        </ion-button>
+      </div>
 
-      <ion-input 
-        type="password" 
-        placeholder="Ingrese su contraseña nueva" 
-        label="Contraseña Nueva:" 
-        labelPlacement="floating"
-        errorText="Formato de contraseña erroneo"
-        class="custom-input"
-        required>
-        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-      </ion-input>
+      <div id="contra" class="custom-input">
+        <ion-input 
+          [type]="passwordType" 
+          placeholder="Ingrese su Contraseña" 
+          label="Contraseña Nueva:" 
+          labelPlacement="floating"
+          helperText="12345678Fn@"
+          errorText="Formato de contraseña incorrecto"
+          required>
+        </ion-input>
+        <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="togglePasswordVisibility()">
+          <ion-icon [name]="passwordIcon"></ion-icon>
+        </ion-button>
+      </div>
 
-      <ion-input 
-        type="password" 
-        placeholder="Confirme su contraseña" 
-        label="Confirmar Contraseña:" 
-        labelPlacement="floating"
-        errorText="Las contraseñas no coinciden"
-        class="custom-input"
-        required>
-        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-      </ion-input>
+      <div id="contra" class="custom-input">
+        <ion-input 
+          [type]="confirmPasswordType" 
+          placeholder="Confirme su Contraseña" 
+          label="Confirmar Contraseña:" 
+          labelPlacement="floating"
+          helperText="12345678Fn@"
+          errorText="Las contraseñas no coinciden"
+          required>
+        </ion-input>
+        <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="toggleConfirmPasswordVisibility()">
+          <ion-icon [name]="confirmPasswordIcon"></ion-icon>
+        </ion-button>
+      </div>
+  
+
+
       <ion-button expand="block" color="warning">Restablecer Contraseña</ion-button>
 
     </ion-card-content>

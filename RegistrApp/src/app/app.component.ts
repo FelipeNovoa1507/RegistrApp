@@ -27,8 +27,9 @@ export class AppComponent {
         { title: 'Modificar Contraseña', url: '/restablecercon', icon: 'create' }
       ]
     },
-    { title: 'Registro Asistencia', url: '/registro-asistencia', icon: 'calendar-clear' },
-    { title: 'Ayuda/Soporte', url: '/ayuda', icon: 'information-circle' }
+    { title: 'Registro Asistencia', url: '/asistencia-qr', icon: 'calendar-clear' },
+    { title: 'Ayuda/Soporte', url: '/ayuda', icon: 'information-circle' },
+    { title: 'Cerrar Sesión', url: '/login', icon: 'log-out' }
   ];
 
   constructor(private menu: MenuController) {}

@@ -30,15 +30,21 @@
               class="custom-input">
             </ion-input>
             
-            <ion-input
-              type="number"
-              placeholder="Ingrese su Contraseña"
-              label="Contraseña:"
-              labelPlacement="floating"
-              formControlName="password"
-              errorText="Contraseña inválida"
-              class="custom-input">
-            </ion-input>
+            <div id="contra" class="custom-input">
+              <ion-input 
+                [type]="passwordType" 
+                placeholder="Ingrese su Ccontraseña" 
+                label="Contraseña:" 
+                labelPlacement="floating"
+                formControlName="password"
+                helperText="12345678Fn@"
+                errorText="Formato de contraseña incorrecto"
+                required>
+              </ion-input>
+              <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="togglePasswordVisibility()">
+                <ion-icon [name]="passwordIcon"></ion-icon>
+              </ion-button>
+            </div>
       
             <div class="checkbox-wrapper">
               <ion-checkbox></ion-checkbox>
