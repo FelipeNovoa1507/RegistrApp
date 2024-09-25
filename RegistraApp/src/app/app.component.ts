@@ -3,6 +3,7 @@ import { MenuController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
 import { NavController } from '@ionic/angular';
+import { AuthService } from './service/auth.service';
 
 interface MenuItem {
   title: string;
@@ -42,7 +43,8 @@ export class AppComponent implements OnInit {
   constructor(
     private menu: MenuController, 
     private platform: Platform,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private authService: AuthService
   ) {
     this.initializeApp();
   }
@@ -54,13 +56,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(){
-    const user = localStorage.getItem('user');
-    if (user) {
-      const userObj = JSON.parse(user);
-      this.userRole = userObj.role;
-      console.log('User role:', this.userRole); // Verificar el rol del usuario
+    this.authService.user$.subscribe(user => {
+      if (user) {
+        this.userRole = user.role;
+      } else {
+        this.userRole = null;
+      }
       this.filterMenuItems();
-    }
+    });
   }
 
   filterMenuItems() {

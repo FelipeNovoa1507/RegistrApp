@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { NavController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../service/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -14,11 +15,13 @@ export class LoginPage implements OnInit {
   public passwordIcon: string = 'eye-off';
 
 
+
   constructor(
     public formBuilder: FormBuilder,
     public navCtrl: NavController, 
     public menuCtrl: MenuController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private authService: AuthService
   ) {
     
     this.loginForm = this.formBuilder.group({
@@ -52,10 +55,14 @@ export class LoginPage implements OnInit {
         const { correo, password } = this.loginForm.value;
         if (correo === 'Usuario1' && password === 'MiClav3') {
           localStorage.setItem('user', JSON.stringify({ correo, role: 'usuario1' }));
-          this.navCtrl.navigateRoot('main');
+          this.navCtrl.navigateRoot('main').then(() => {
+            window.location.reload();
+          }); 
         } else if (correo === 'Profe' && password === 'Pato') {
           localStorage.setItem('user', JSON.stringify({ correo, role: 'profe' }));
-          this.navCtrl.navigateRoot('main');
+          this.navCtrl.navigateRoot('main').then(() => {
+            window.location.reload();
+          }); 
         } else {
           const alert = await this.alertController.create({
             header: 'Error',

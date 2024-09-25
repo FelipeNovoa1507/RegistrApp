@@ -4,7 +4,7 @@ import { BarcodeScanningModalComponent } from './barcode-scanning-modal.componen
 import { BarcodeScanner, LensFacing } from '@capacitor-mlkit/barcode-scanning';
 import { Clipboard } from '@capacitor/clipboard';
 import { Browser } from '@capacitor/browser';
-
+import { AuthService } from '../service/auth.service';
 @Component({
   selector: 'app-asistencia-qr',
   templateUrl: './asistencia-qr.page.html',
@@ -12,15 +12,17 @@ import { Browser } from '@capacitor/browser';
 })
 export class AsistenciaQrPage implements OnInit {
 
-  segment = 'generar';
+  segment: string = 'generar';
   qrText = 'oe chucky cualquier wa vo tay acreditaooo por la fixaaaaaaa';
 
   //www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley
   scanResult = 'www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley';
+  userRole: string | null = null;
   constructor(
     private platform: Platform,
     private modalController: ModalController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private authService: AuthService
 
   ) {}
 
@@ -52,6 +54,14 @@ export class AsistenciaQrPage implements OnInit {
       BarcodeScanner.checkPermissions().then();
       BarcodeScanner.removeAllListeners();
     }
+    this.authService.user$.subscribe(user => {
+      if (user) {
+        this.userRole = user.role;
+        this.segment = this.userRole === 'profe' ? 'generar' : 'escanear';
+      } else {
+        this.userRole = null;
+      }
+    });
   }
 
   segmentChanged(event: any) {
