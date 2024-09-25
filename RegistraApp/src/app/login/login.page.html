@@ -1,12 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Inicio de Sesión</ion-title>
-    <ion-buttons slot="end">
-      <ion-back-button defaultHref="main"></ion-back-button>
-    </ion-buttons>
+    <ion-title>RegistrApp</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -21,9 +15,9 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
             <ion-input
-              type="email"
-              placeholder="Ingrese su Correo"
-              label="Correo:"
+              type="text"
+              placeholder="Ingrese su Usuario"
+              label="Usuario:"
               labelPlacement="floating"
               formControlName="correo"
               errorText="Correo inválido"

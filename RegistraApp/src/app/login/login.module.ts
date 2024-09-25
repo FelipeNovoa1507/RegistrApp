@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
 
 import { LoginPageRoutingModule } from './login-routing.module';
 
@@ -15,7 +16,8 @@ import { LoginPage } from './login.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    LoginPageRoutingModule
+    LoginPageRoutingModule,
+    RouterModule.forChild([{ path: '', component: LoginPage }])
   ],
   declarations: [LoginPage]
 })

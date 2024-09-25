@@ -12,5 +12,92 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
- 
+
+  <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
+
+    <ion-segment-button value="generar">
+      <ion-label>Generar Qr</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="escanear">
+      <ion-label>Escanear QR</ion-label>
+    </ion-segment-button>
+
+
+  </ion-segment>
+
+  
+  
+  <div class="segment" *ngIf="segment === 'generar'" >
+    <ion-label>
+      <h1>Tus alumnos deben escanear este Qr para registrar su asistencia en esta clase.</h1>
+    </ion-label>
+    <div class="segment-content">
+      <div id="qrImage">
+        <div class="d-flex-center">
+          <div class="d-flex-center qr-wrapper">
+            <qr-code *ngIf="qrText" [value]="qrText" size="190" errorCorrectionLevel="M" />
+            <img *ngIf="!qrText" class="qr-placeholder" src="assets/img/qr.webp" alt="">
+          </div>
+
+        </div>
+      </div>
+
+      
+      <ion-textarea
+        label="Escribe algo para generar un código Qr"
+        labelPlacement="stacked"
+        fill="outline"
+        [(ngModel)]="qrText"
+        rows="4"
+        [autoGrow]="true">
+      </ion-textarea>
+    </div>
+  </div>
+
+
+  <div class="segment" *ngIf="segment === 'escanear'" >
+    <ion-label>
+      <h1>Escanea este Qr para registrar tu asistencia en esta clase.</h1>
+    </ion-label>
+    <div class="segment-content">
+      <div id="qrImage">
+        <div class="d-flex-center">
+          <div class="d-flex-center qr-wrapper">
+            <img class="qr-wrapper" src="assets/img/scan-qr.webp" alt="">
+          </div>
+        </div>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button (click)="startScanner()" class="submit" expand="block">
+              Escanear
+              <ion-icon slot="end" name="scan"></ion-icon>
+            </ion-button>
+          </ion-col>
+          
+        </ion-row>
+
+        <ion-item class="result" *ngIf="scanResult" lines="none">
+          <ion-label>
+            <p>Resultado de Escaneo</p>
+            <div>{{scanResult}}</div>
+          </ion-label>
+          <div slot="end" class="icon-buttons">
+            <ion-icon *ngIf="isUrl()" name="globe" (click)="openCapacitorSite()" class="clickable-icon"></ion-icon>
+            <ion-icon name="copy" (click)="writeToClipboard()" class="clickable-icon"></ion-icon>
+          </div>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+          
+
 </ion-content>
+
+
+
+
