@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { AuthService } from './service/auth.service';
 
 interface MenuItem {
@@ -34,16 +34,15 @@ export class AppComponent implements OnInit {
     },
     { title: 'Registro Asistencia', url: '/asistencia-qr', icon: 'calendar-clear' },
     { title: 'Ayuda/Soporte', url: '/ayuda', icon: 'information-circle' },
-    { title: 'Cerrar Sesión', icon: 'log-out', action: () => this.logout() }
+    { title: 'Cerrar Sesión', icon: 'log-out', action:  () => this.logout() }
   ];
 
-  public filteredAppPages: MenuItem[] = [];
   userRole: string | null = null;
 
   constructor(
     private menu: MenuController, 
     private platform: Platform,
-    public navCtrl: NavController,
+    public router: Router,
     private authService: AuthService
   ) {
     this.initializeApp();
@@ -56,33 +55,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.authService.user$.subscribe(user => {
-      if (user) {
-        this.userRole = user.role;
-      } else {
-        this.userRole = null;
-      }
-      this.filterMenuItems();
-    });
+    console.log('ngOnInit');
   }
 
-  filterMenuItems() {
-    if (this.userRole === 'profe') {
-      this.filteredAppPages = this.appPages.map(page => {
-        if (page.children) {
-          page.children = page.children.filter(child => child.title !== 'Asignatura' && child.title !== 'Asistencia');
-        }
-        return page;
-      }).filter(page => page.children?.length !== 0 || !page.children);
-    } else {
-      this.filteredAppPages = this.appPages;
-    }
-    console.log('Filtered menu items:', this.filteredAppPages); // Verificar los elementos filtrados
-  }
+
 
   async logout() {
-    localStorage.clear();
-    this.navCtrl.navigateRoot('/login');
+    await this.authService.logout();
+    this.router.navigate(['/login']).then(() => {
+      window.location.reload();
+    });
   }
 
   toggleMenu(page: MenuItem) {
@@ -93,7 +75,9 @@ export class AppComponent implements OnInit {
     if (page.action) {
       page.action();
     } else if (page.url) {
-      this.navCtrl.navigateRoot(page.url);
+      this.router.navigate([page.url]).then(() => {
+        window.location.reload();
+      });
     }
     this.closeMenu();
   }

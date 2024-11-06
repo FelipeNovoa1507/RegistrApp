@@ -15,11 +15,11 @@
 
   <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
 
-    <ion-segment-button *ngIf="userRole === 'profe'" value="generar">
+    <ion-segment-button value="generar">
       <ion-label>Generar Qr</ion-label>
     </ion-segment-button>
 
-    <ion-segment-button *ngIf="userRole === 'usuario1'" value="escanear">
+    <ion-segment-button value="escanear">
       <ion-label>Escanear QR</ion-label>
     </ion-segment-button>
 
@@ -28,7 +28,7 @@
 
   
   
-  <div class="segment" *ngIf="segment === 'generar' && userRole === 'profe'">
+  <div class="segment" *ngIf="segment === 'generar'">
     <ion-label>
       <h1>Tus alumnos deben escanear este Qr para registrar su asistencia en esta clase.</h1>
     </ion-label>
@@ -56,7 +56,7 @@
   </div>
 
 
-  <div class="segment" *ngIf="segment === 'escanear' && userRole === 'usuario1'">
+  <div class="segment" *ngIf="segment === 'escanear'">
     <ion-label>
       <h1>Escanea este Qr para registrar tu asistencia en esta clase.</h1>
     </ion-label>

@@ -12,47 +12,49 @@
         <ion-card-title>Iniciar Sesión</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div>
 
-            <ion-input
-              type="text"
-              placeholder="Ingrese su Usuario"
-              label="Usuario:"
+          <ion-input
+            [(ngModel)]="credenciales.correo"
+            type="text"
+            placeholder="Ingrese su Usuario"
+            label="Usuario:"
+            labelPlacement="floating"
+            errorText="Correo inválido"
+            class="custom-input">
+          </ion-input>
+          
+          <div id="contra" class="custom-input">
+            <ion-input 
+            [(ngModel)]="credenciales.password"
+            [type]="passwordType" 
+            placeholder="Ingrese su Contraseña" 
+            label="Contraseña:" 
               labelPlacement="floating"
-              formControlName="correo"
-              errorText="Correo inválido"
-              class="custom-input">
+              errorText="Formato de contraseña incorrecto"
+              required>
             </ion-input>
-            
-            <div id="contra" class="custom-input">
-              <ion-input 
-                [type]="passwordType" 
-                placeholder="Ingrese su Contraseña" 
-                label="Contraseña:" 
-                labelPlacement="floating"
-                formControlName="password"
-                helperText="12345678Fn@"
-                errorText="Formato de contraseña incorrecto"
-                required>
-              </ion-input>
-              <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="togglePasswordVisibility()">
-                <ion-icon [name]="passwordIcon"></ion-icon>
-              </ion-button>
-            </div>
-      
-            <div class="checkbox-wrapper">
-              <ion-checkbox></ion-checkbox>
-              <ion-label>Recordar sesión</ion-label>
-            </div>
-            
-          <ion-button expand="block" color="warning" type="submit" >Iniciar Sesión</ion-button>
+            <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="togglePasswordVisibility()">
+              <ion-icon [name]="passwordIcon"></ion-icon>
+            </ion-button>
+          </div>
+    
+          <div class="checkbox-wrapper">
+            <ion-checkbox></ion-checkbox>
+            <ion-label>Recordar sesión</ion-label>
+          </div>
+          
+          <ion-button expand="block" color="warning" (click)="login()" >Iniciar Sesión</ion-button>
+          <a routerLink="/registro" class="link-text">
+            ¿Aún sin cuenta? ¡Regístrate!
+          </a>
           <a routerLink="/restablecercon" class="link-text">
             ¿Olvidaste tu contraseña?
           </a>
           <a routerLink="/ayuda" class="link-text">
             ¿Necesitas Ayuda?
           </a>
-        </form>
+        </div>
       </ion-card-content>
     </ion-card>
   </div>

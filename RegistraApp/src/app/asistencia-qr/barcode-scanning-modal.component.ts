@@ -21,11 +21,12 @@ import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-barcode-scanning',
   template: `
-    <ion-header class="ion-no-border">
-      <ion-toolbar color="tertiary">
+    <ion-header>
+      <ion-toolbar style="color: var(--ion-color-duocblue);">
+        <ion-title style="color: white;">Escanear Código Qr</ion-title>
         <ion-buttons slot="end">
-          <ion-button (click)="closeModal()">
-            <ion-icon name="close"></ion-icon>
+          <ion-button (click)="dismiss()">
+            <ion-icon name="close" style="color: white;"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-toolbar>
@@ -80,7 +81,11 @@ export class BarcodeScanningModalComponent
   constructor(
     private readonly ngZone: NgZone,
     private modalController: ModalController
-  ) { }
+  ) {}
+    dismiss() {
+      this.modalController.dismiss();
+    }
+   
 
   public ngOnInit(): void {
     BarcodeScanner.isTorchAvailable().then((result) => {
@@ -176,3 +181,7 @@ export class BarcodeScanningModalComponent
     await BarcodeScanner.stopScan();
   }
 }
+function dismiss() {
+  throw new Error('Function not implemented.');
+}
+

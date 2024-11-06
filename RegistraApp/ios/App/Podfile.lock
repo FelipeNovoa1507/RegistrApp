@@ -15,6 +15,8 @@ PODS:
   - CapacitorMlkitBarcodeScanning (6.1.0):
     - Capacitor
     - GoogleMLKit/BarcodeScanning (= 5.0.0)
+  - CapacitorPreferences (6.0.2):
+    - Capacitor
   - CapacitorScreenOrientation (6.0.2):
     - Capacitor
   - CapacitorStatusBar (6.0.1):
@@ -87,6 +89,7 @@ DEPENDENCIES:
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorMlkitBarcodeScanning (from `../../node_modules/@capacitor-mlkit/barcode-scanning`)"
+  - "CapacitorPreferences (from `../../node_modules/@capacitor/preferences`)"
   - "CapacitorScreenOrientation (from `../../node_modules/@capacitor/screen-orientation`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
 
@@ -122,6 +125,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/keyboard"
   CapacitorMlkitBarcodeScanning:
     :path: "../../node_modules/@capacitor-mlkit/barcode-scanning"
+  CapacitorPreferences:
+    :path: "../../node_modules/@capacitor/preferences"
   CapacitorScreenOrientation:
     :path: "../../node_modules/@capacitor/screen-orientation"
   CapacitorStatusBar:
@@ -136,6 +141,7 @@ SPEC CHECKSUMS:
   CapacitorHaptics: fe689ade56ef20ec9b041a753c6da70c5d8ec9a9
   CapacitorKeyboard: 2700f9b18687be021e28b5a09b59eb151a46d5e0
   CapacitorMlkitBarcodeScanning: 63e217d376f8f63b1be84c0d19568f318e87f4d3
+  CapacitorPreferences: e8284bf740cf8c6d3f25409af3c01df87dfeb5a1
   CapacitorScreenOrientation: 6039dc2ea4a8596b79316709d5727e8bb7e32845
   CapacitorStatusBar: b81d4fb5d4e0064c712018071b3ab4b810b39a63
   GoogleDataTransport: 6c09b596d841063d76d4288cc2d2f42cc36e1e2a
@@ -151,6 +157,6 @@ SPEC CHECKSUMS:
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
 
-PODFILE CHECKSUM: 1044655bbba1ec137d38952146d325a7887fe5cc
+PODFILE CHECKSUM: b20f2d3ca8013c5754f4c19ce4a2e35222a5146c
 
 COCOAPODS: 1.15.2

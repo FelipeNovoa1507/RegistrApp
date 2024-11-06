@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-ayuda',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ayuda.page.scss'],
 })
 export class AyudaPage implements OnInit {
+  
 
-  constructor() { }
+  constructor(public menuCtrl: MenuController) { }
 
-  ngOnInit() {
+
+
+  async ngOnInit() {
+    this.menuCtrl.enable(false); // Deshabilitar el menú
   }
+  ionViewWillLeave() {
+    this.menuCtrl.enable(true); // Habilitar el menú cuando se salga de la página de login
+  }
+
 
 }

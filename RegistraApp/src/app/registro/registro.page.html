@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Registro de Usuarios</ion-title>
     <ion-buttons slot="end">
-      <ion-back-button defaultHref="main"></ion-back-button>
+      <ion-back-button defaultHref="login"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -15,43 +15,54 @@
         <ion-card-title>Registro de Información.</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+        <div>
           <ion-input 
+            [(ngModel)]="ajustesComponent.data.usuario.nombre"
             type="text" 
-            placeholder="Ingrese su nombre completo" 
-            label="Nombre y Apellido:" 
+            placeholder="Ingrese su nombre" 
+            label="Nombre:" 
             labelPlacement="floating"
-            formControlName="nombre"
-            helperText="Juan Perez"
+            helperText="Juan"
+            errorText="Formato de nombre erroneo"
+            class="custom-input">    
+          </ion-input>
+      
+          <ion-input 
+            [(ngModel)]="ajustesComponent.data.usuario.apellido"
+            type="text" 
+            placeholder="Ingrese su apellido" 
+            label="Apellido:" 
+            labelPlacement="floating"
+            helperText="Perez"
             errorText="Formato de nombre erroneo"
             class="custom-input">    
           </ion-input>
       
           <ion-input  
+            [(ngModel)]="ajustesComponent.data.usuario.rut"
             type="text" 
             placeholder="Ingrese su Rut completo" 
             label="Rut:" 
             labelPlacement="floating"
-            formControlName="rut"
             helperText="12345678-9"
             errorText="Formato de Rut erroneo"
             class="custom-input">    
           </ion-input>
       
           <ion-input 
+            [(ngModel)]="ajustesComponent.data.usuario.edad"
             type="number" 
             placeholder="Ingrese edad" 
             label="Edad:" 
             labelPlacement="floating"
-            formControlName="edad"
             helperText="22"
             errorText="Formato de edad erroneo"
             class="custom-input">    
           </ion-input>
 
           <ion-select 
+            [(ngModel)]="ajustesComponent.data.usuario.genero"
             class="custom-input underline-select"
-            formControlName="genero" 
             placeholder="Seleccione su Género" 
             label="Género:"
             labelPlacement="floating">
@@ -62,22 +73,22 @@
           </ion-select>
       
           <ion-input 
+            [(ngModel)]="ajustesComponent.data.usuario.correo"
             type="email" 
             placeholder="Ingrese correo" 
             label="Correo:" 
             labelPlacement="floating"
-            formControlName="correo"
             helperText="xxxxxx@xxxxx.xx"
             errorText="Formato de correo erroneo"
             class="custom-input">    
           </ion-input>
       
           <ion-input 
+            [(ngModel)]="ajustesComponent.data.usuario.carrera"
             type="text" 
             placeholder="Carrera" 
             label="Carrera:" 
             labelPlacement="floating"
-            formControlName="carrera" 
             helperText="Ingeniería en Informática"
             errorText="Formato de texto Erróneo"
             [clearInput]="true" 
@@ -86,8 +97,8 @@
 
 
           <ion-select 
+            [(ngModel)]="ajustesComponent.data.usuario.semestre"
             class="custom-input underline-select"
-            formControlName="semestre" 
             placeholder="Seleccione su semestre" 
             label="Semestre:"
             labelPlacement="floating">
@@ -107,7 +118,6 @@
               placeholder="Ingrese su Contraseña" 
               label="Contraseña:" 
               labelPlacement="floating"
-              formControlName="password"
               helperText="12345678Fn@"
               errorText="Formato de contraseña incorrecto"
               required>
@@ -119,11 +129,11 @@
 
           <div id="contra" class="custom-input">
             <ion-input 
+            [(ngModel)]="ajustesComponent.data.usuario.password"
               [type]="confirmPasswordType" 
               placeholder="Confirme su Contraseña" 
               label="Confirmar Contraseña:" 
               labelPlacement="floating"
-              formControlName="confirmPassword"
               helperText="12345678Fn@"
               errorText="Las contraseñas no coinciden"
               required>
@@ -142,8 +152,8 @@
             <ion-label>He leído y acepto los <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" >Términos y Condiciones y la Política de Privacidad.</a></ion-label>
           </div>
       
-          <ion-button expand="block" color="warning" type="submit" >Enviar Formulario</ion-button>
-        </form>
+          <ion-button expand="block" color="warning" type="submit" (click)="crearNuevoResultado()">Enviar Formulario</ion-button>
+        </div>
       </ion-card-content>
     </ion-card>
   </div>

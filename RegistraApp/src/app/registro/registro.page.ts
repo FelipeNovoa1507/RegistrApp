@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AjustesComponent } from '../backend/ajustes/ajustes.component'; // Ajusta la ruta según sea necesario
+
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
+  providers: [AjustesComponent]   
 })
 export class RegistroPage implements OnInit {
   public registroForm: FormGroup;
@@ -14,7 +18,12 @@ export class RegistroPage implements OnInit {
   public confirmPasswordType: string = 'password';
   public confirmPasswordIcon: string = 'eye-off';
 
-  constructor(public formBuilder: FormBuilder, public navCtrl: NavController) {
+  constructor(
+    public ajustesComponent: AjustesComponent,
+    public formBuilder: FormBuilder, 
+    public router: Router, 
+    public menuCtrl: MenuController
+  ) {
     this.registroForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       rut: ['', [Validators.required, this.validarRut]],
@@ -27,10 +36,18 @@ export class RegistroPage implements OnInit {
       confirmPassword: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
   }
+  crearNuevoResultado() {
+    this.ajustesComponent.crearNuevoResultado();
+  }
 
-  ngOnInit() {
-    // Inicialización del componente o lógica adicional
-    console.log('RegistroPage inicializado');
+  async ngOnInit() {
+    this.menuCtrl.enable(false); // Deshabilitar el menú
+  }
+
+  ionViewWillLeave() {
+    this.menuCtrl.enable(true).then(() => {
+      window.location.reload();
+    }); 
   }
 
   validarRut(control: AbstractControl): { [key: string]: boolean } | null {
@@ -79,12 +96,6 @@ export class RegistroPage implements OnInit {
   }
 
   onSubmit() {
-    if (this.registroForm.valid) {
-      console.log('Formulario válido', this.registroForm.value);
-      localStorage.setItem('ingresado', "true");
-      this.navCtrl.navigateRoot('main');
-    } else {
-      console.log('Formulario inválido');
+    console.log('lol');
     }
   }
-}

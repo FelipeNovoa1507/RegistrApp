@@ -6,7 +6,7 @@
           <ion-list-header>Jordan Belfort</ion-list-header>
           <ion-note>jo.belfort&#64;duocuc.cl</ion-note>
 
-          <div *ngFor="let p of filteredAppPages; let i = index">
+          <div *ngFor="let p of appPages; let i = index">
             <ion-item *ngIf="!p.children" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected" (click)="handlePageAction(p)">
               <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
@@ -20,7 +20,7 @@
               </ion-item>
               <div [ngClass]="{'submenu-container': true, 'expanded': p.expanded}">
                 <div *ngFor="let child of p.children">
-                  <ion-item *ngIf="userRole !== 'profe' || (child.title !== 'Asignatura' && child.title !== 'Asistencia')" class="submenu-item" routerDirection="root" [routerLink]="[child.url]" lines="none" detail="false" routerLinkActive="selected" (click)="closeSubMenu(p)">
+                  <ion-item class="submenu-item" routerDirection="root" [routerLink]="[child.url]" lines="none" detail="false" routerLinkActive="selected" (click)="closeSubMenu(p)">
                     <ion-icon aria-hidden="true" slot="start" [ios]="child.icon + '-outline'" [md]="child.icon + '-sharp'"></ion-icon>
                     <ion-label>{{ child.title }}</ion-label>
                   </ion-item>

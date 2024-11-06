@@ -12,9 +12,17 @@
     <img src="assets/img/DuocUC.png" alt="Logo" class="login-logo"> <!-- Añadir la imagen aquí -->
   </div>
 
-    <h1>¿Aún sin cuenta? ¡Regístrate!</h1>
-    <ion-button expand="block" color="warning" routerLink="/registro">Registrarse</ion-button>
-    <br>
-    <h1>¿Registrado? ¡Inicia Sesión!</h1>
-    <ion-button expand="block" color="warning" routerLink="/login">Iniciar Sesión</ion-button>
+  <div *ngIf="userRole === 'profe'" >
+    <ion-label>
+      <h1>
+        ¡Bienvenido Profesor Patricio!</h1>
+      </ion-label>
+    </div>
+  <div *ngIf="userRole === 'usuario1'" >
+    <ion-label>
+      <h1>
+        ¡Bienvenido Alumno Jordan!</h1>
+      </ion-label>
+    </div>
+
 </ion-content>

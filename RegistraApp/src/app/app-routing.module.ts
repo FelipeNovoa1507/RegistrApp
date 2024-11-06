@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AjustesComponent } from './backend/ajustes/ajustes.component';
 
 const routes: Routes = [
   {
@@ -50,7 +51,10 @@ const routes: Routes = [
   {
     path: 'asistencia-qr',
     loadChildren: () => import('./asistencia-qr/asistencia-qr.module').then( m => m.AsistenciaQrPageModule)
-  }
+  },
+  {
+    path: 'ajustes', component: AjustesComponent
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,44 @@
+<p>
+  ajustes works!
+</p>
+
+
+<div class="content-resultado" *ngFor="let resultado of resultados">
+  <ion-item>
+    <ion-label>Nombre:   </ion-label>
+    <ion-input [(ngModel)]="resultado.usuario.nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Apellido:   </ion-label>
+    <ion-input [(ngModel)]="resultado.usuario.apellido"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>rut:   </ion-label>
+    <ion-input [(ngModel)]="resultado.usuario.rut"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>correo:   </ion-label>
+    <ion-input [(ngModel)]="resultado.usuario.correo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>carrera:   </ion-label>
+    <ion-input [(ngModel)]="resultado.usuario.carrera"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>id:   </ion-label>
+    <ion-input [(ngModel)]="resultado.usuario.id"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>edad:   </ion-label>
+    <ion-input [(ngModel)]="resultado.usuario.edad"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>genero:   </ion-label>
+    <ion-input [(ngModel)]="resultado.usuario.genero"></ion-input>
+  </ion-item>
+</div>
+
+<ion-button (click)="crearNuevoResultado()">
+  crear
+
+</ion-button>

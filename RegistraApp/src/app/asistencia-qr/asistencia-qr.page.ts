@@ -13,10 +13,10 @@ import { AuthService } from '../service/auth.service';
 export class AsistenciaQrPage implements OnInit {
 
   segment: string = 'generar';
-  qrText = 'oe chucky cualquier wa vo tay acreditaooo por la fixaaaaaaa';
+  qrText = 'Texto de Ejemplo';
 
   //www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley
-  scanResult = 'www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley';
+  scanResult = 'Hola qué tal.';
   userRole: string | null = null;
   constructor(
     private platform: Platform,
@@ -54,14 +54,6 @@ export class AsistenciaQrPage implements OnInit {
       BarcodeScanner.checkPermissions().then();
       BarcodeScanner.removeAllListeners();
     }
-    this.authService.user$.subscribe(user => {
-      if (user) {
-        this.userRole = user.role;
-        this.segment = this.userRole === 'profe' ? 'generar' : 'escanear';
-      } else {
-        this.userRole = null;
-      }
-    });
   }
 
   segmentChanged(event: any) {
