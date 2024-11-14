@@ -3,30 +3,16 @@
     <ion-menu contentId="main-content" type="overlay" class="custom-menu">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Jordan Belfort</ion-list-header>
-          <ion-note>jo.belfort&#64;duocuc.cl</ion-note>
+          <ion-list-header>{{nombre}} {{apellido}}</ion-list-header>
+          <ion-note>{{correo}}</ion-note>
 
           <div *ngFor="let p of appPages; let i = index">
-            <ion-item *ngIf="!p.children" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected" (click)="handlePageAction(p)">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected" (click)="handlePageAction(p)">
               <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
 
-            <div *ngIf="p.children">
-              <ion-item lines="none" detail="false" (click)="toggleMenu(p)">
-                <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-                <ion-label>{{ p.title }}</ion-label>
-                <ion-icon slot="end" [name]="p.expanded ? 'chevron-up' : 'chevron-down'"></ion-icon>
-              </ion-item>
-              <div [ngClass]="{'submenu-container': true, 'expanded': p.expanded}">
-                <div *ngFor="let child of p.children">
-                  <ion-item class="submenu-item" routerDirection="root" [routerLink]="[child.url]" lines="none" detail="false" routerLinkActive="selected" (click)="closeSubMenu(p)">
-                    <ion-icon aria-hidden="true" slot="start" [ios]="child.icon + '-outline'" [md]="child.icon + '-sharp'"></ion-icon>
-                    <ion-label>{{ child.title }}</ion-label>
-                  </ion-item>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </ion-list>
       </ion-content>

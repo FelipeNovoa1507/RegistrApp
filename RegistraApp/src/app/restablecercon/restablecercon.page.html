@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Restablecer Contraseña</ion-title>
     <ion-buttons slot="end">
-      <ion-back-button defaultHref="main"></ion-back-button>
+      <ion-back-button defaultHref=""(click)="app.handleBackButton($event)"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,7 @@
   <div class="login-container">
     <img src="assets/img/DuocUC.png" alt="Logo" class="login-logo">
   </div>
-  <ion-card>
+  <ion-card *ngIf="isAuthenticated">
     <ion-card-content>
       <div id="contra" class="custom-input">
         <ion-input 
@@ -22,7 +22,7 @@
           placeholder="Ingrese su Contraseña Actual" 
           label="Contraseña Actual:" 
           labelPlacement="floating"
-          errorText="Formato de contraseña incorrecto"
+          [(ngModel)]="currentPassword"
           required>
         </ion-input>
         <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="toggleActualPasswordVisibility()">
@@ -36,8 +36,7 @@
           placeholder="Ingrese su Contraseña" 
           label="Contraseña Nueva:" 
           labelPlacement="floating"
-          helperText="12345678Fn@"
-          errorText="Formato de contraseña incorrecto"
+          [(ngModel)]="newPassword"
           required>
         </ion-input>
         <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="togglePasswordVisibility()">
@@ -51,7 +50,7 @@
           placeholder="Confirme su Contraseña" 
           label="Confirmar Contraseña:" 
           labelPlacement="floating"
-          errorText="Las contraseñas no coinciden"
+          [(ngModel)]="confirmPassword"
           required>
         </ion-input>
         <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="toggleConfirmPasswordVisibility()">
@@ -59,34 +58,31 @@
         </ion-button>
       </div>
   
-
-
-      <ion-button expand="block" color="warning">Restablecer Contraseña</ion-button>
-
+      <ion-button expand="block" color="warning" (click)="changePassword()">Cambiar Contraseña</ion-button>
     </ion-card-content>
   </ion-card>
 
   <ion-card>
     <ion-card-header class="center-text">
-      <ion-card-title>Olvidaste tu contraseña actual?</ion-card-title>
+      <ion-card-title>¿Olvidaste tu contraseña actual?</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-
       <ion-label class="center-text">
         Ingresa el correo electrónico con el que te registraste y te enviaremos un enlace para restablecer tu contraseña.
       </ion-label>
       
       <ion-item>
-        <ion-input type="email" 
-        placeholder="Ingrese correo" 
-        label="Correo" 
-        labelPlacement="floating"
-        class="custom-input"></ion-input>
+        <ion-input 
+          type="email" 
+          placeholder="Ingrese correo" 
+          label="Correo" 
+          labelPlacement="floating"
+          class="custom-input"
+          [(ngModel)]="email">
+        </ion-input>
       </ion-item>
       
-      <ion-button expand="block" color="warning">Enviar Correo</ion-button>
-      
+      <ion-button expand="block" color="warning" (click)="resetPassword()">Enviar Correo</ion-button>
     </ion-card-content>
-    </ion-card>
-  </ion-content>
-  
+  </ion-card>
+</ion-content>

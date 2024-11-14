@@ -12,16 +12,16 @@
     <img src="assets/img/DuocUC.png" alt="Logo" class="login-logo"> <!-- Añadir la imagen aquí -->
   </div>
 
-  <div *ngIf="userRole === 'profe'" >
+  <div *ngIf="userRole === 'Profesor'" >
     <ion-label>
       <h1>
-        ¡Bienvenido Profesor Patricio!</h1>
+        ¡Bienvenido Profesor {{userName}}, gran jornada!</h1>
       </ion-label>
     </div>
-  <div *ngIf="userRole === 'usuario1'" >
+  <div *ngIf="userRole === 'Alumno'" >
     <ion-label>
       <h1>
-        ¡Bienvenido Alumno Jordan!</h1>
+        ¡Bienvenido {{userName}}, gran jornada!</h1>
       </ion-label>
     </div>
 

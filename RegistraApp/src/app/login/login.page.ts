@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
     correo: "",
     password:""
   };
+  rememberMe: boolean = false;
 
   constructor(
     private interaction: InteractionService,
@@ -41,9 +42,10 @@ export class LoginPage implements OnInit {
   
   async ngOnInit() {
     this.menuCtrl.enable(false); // Deshabilitar el menú
+    this.loadCredentials();
   }
   ionViewWillLeave() {
-    this.menuCtrl.enable(true); // Habilitar el menú cuando se salga de la página de login
+    this.menuCtrl.enable(true);
   }
 
   async login(){
@@ -54,6 +56,11 @@ export class LoginPage implements OnInit {
       if (res) {
         console.log('res :', res);
         this.interaction.closeLoading();
+        if (this.rememberMe) {
+          this.saveCredentials(); 
+        } else {
+          this.clearCredentials();
+        }
         this.router.navigate(['/main']);
       }
     } catch (error){
@@ -66,6 +73,25 @@ export class LoginPage implements OnInit {
       }).then(res => {
         res.present();
       });
+    }
   }
+  saveCredentials() {
+    localStorage.setItem('correo', this.credenciales.correo);
+    localStorage.setItem('password', this.credenciales.password);
+  }
+
+  loadCredentials() {
+    const correo = localStorage.getItem('correo');
+    const password = localStorage.getItem('password');
+    if (correo && password) {
+      this.credenciales.correo = correo;
+      this.credenciales.password = password;
+      this.rememberMe = true;
+    }
+  }
+
+  clearCredentials() {
+    localStorage.removeItem('correo');
+    localStorage.removeItem('password');
   }
 }

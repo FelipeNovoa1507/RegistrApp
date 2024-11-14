@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Registro de Usuarios</ion-title>
     <ion-buttons slot="end">
-      <ion-back-button defaultHref="login"></ion-back-button>
+      <ion-back-button defaultHref="" (click)="app.handleBackButton($event)"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -17,7 +17,7 @@
       <ion-card-content>
         <div>
           <ion-input 
-            [(ngModel)]="ajustesComponent.data.usuario.nombre"
+            [(ngModel)]="ajustesComponent.Usuario.nombre"
             type="text" 
             placeholder="Ingrese su nombre" 
             label="Nombre:" 
@@ -28,7 +28,7 @@
           </ion-input>
       
           <ion-input 
-            [(ngModel)]="ajustesComponent.data.usuario.apellido"
+            [(ngModel)]="ajustesComponent.Usuario.apellido"
             type="text" 
             placeholder="Ingrese su apellido" 
             label="Apellido:" 
@@ -39,7 +39,7 @@
           </ion-input>
       
           <ion-input  
-            [(ngModel)]="ajustesComponent.data.usuario.rut"
+            [(ngModel)]="ajustesComponent.Usuario.rut"
             type="text" 
             placeholder="Ingrese su Rut completo" 
             label="Rut:" 
@@ -50,7 +50,7 @@
           </ion-input>
       
           <ion-input 
-            [(ngModel)]="ajustesComponent.data.usuario.edad"
+            [(ngModel)]="ajustesComponent.Usuario.edad"
             type="number" 
             placeholder="Ingrese edad" 
             label="Edad:" 
@@ -61,7 +61,7 @@
           </ion-input>
 
           <ion-select 
-            [(ngModel)]="ajustesComponent.data.usuario.genero"
+            [(ngModel)]="ajustesComponent.Usuario.genero"
             class="custom-input underline-select"
             placeholder="Seleccione su Género" 
             label="Género:"
@@ -73,7 +73,7 @@
           </ion-select>
       
           <ion-input 
-            [(ngModel)]="ajustesComponent.data.usuario.correo"
+            [(ngModel)]="ajustesComponent.Usuario.correo"
             type="email" 
             placeholder="Ingrese correo" 
             label="Correo:" 
@@ -84,7 +84,7 @@
           </ion-input>
       
           <ion-input 
-            [(ngModel)]="ajustesComponent.data.usuario.carrera"
+            [(ngModel)]="ajustesComponent.Usuario.carrera"
             type="text" 
             placeholder="Carrera" 
             label="Carrera:" 
@@ -95,22 +95,6 @@
             class="custom-input">
           </ion-input>
 
-
-          <ion-select 
-            [(ngModel)]="ajustesComponent.data.usuario.semestre"
-            class="custom-input underline-select"
-            placeholder="Seleccione su semestre" 
-            label="Semestre:"
-            labelPlacement="floating">
-              <ion-select-option value="1">1</ion-select-option>
-              <ion-select-option value="2">2</ion-select-option>
-              <ion-select-option value="3">3</ion-select-option>
-              <ion-select-option value="4">4</ion-select-option>
-              <ion-select-option value="5">5</ion-select-option>
-              <ion-select-option value="6">6</ion-select-option>
-              <ion-select-option value="7">7</ion-select-option>
-              <ion-select-option value="8">8</ion-select-option>
-          </ion-select>
       
           <div id="contra" class="custom-input">
             <ion-input 
@@ -129,7 +113,7 @@
 
           <div id="contra" class="custom-input">
             <ion-input 
-            [(ngModel)]="ajustesComponent.data.usuario.password"
+            [(ngModel)]="ajustesComponent.Usuario.password"
               [type]="confirmPasswordType" 
               placeholder="Confirme su Contraseña" 
               label="Confirmar Contraseña:" 

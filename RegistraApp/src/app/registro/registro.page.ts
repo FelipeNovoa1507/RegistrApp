@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AjustesComponent } from '../backend/ajustes/ajustes.component'; // Ajusta la ruta según sea necesario
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class RegistroPage implements OnInit {
   public confirmPasswordIcon: string = 'eye-off';
 
   constructor(
+    public app: AppComponent,
     public ajustesComponent: AjustesComponent,
     public formBuilder: FormBuilder, 
     public router: Router, 
@@ -31,7 +33,6 @@ export class RegistroPage implements OnInit {
       correo: ['', [Validators.required, Validators.email]],
       carrera: ['', Validators.required],
       genero: ['', Validators.required],
-      semestre: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });

@@ -59,7 +59,7 @@
    }
    
    .qr-placeholder{
-     width: 60px; 
+     width: 250px; 
    }
    
    .d-flex-center{
@@ -92,4 +92,9 @@
   }
 
 
-  
+  .custom-select {
+    border: 1px solid #ccc; /* Añade un borde */
+    border-radius: 14px; /* Añade un radio de borde */
+    padding: 5px; /* Añade un relleno */
+    margin: 12px 0; /* Añade un margen */
+  }

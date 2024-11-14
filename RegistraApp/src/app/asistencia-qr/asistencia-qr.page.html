@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Registro de Asistencia</ion-title>
     <ion-buttons slot="end">
-      <ion-back-button defaultHref="main"></ion-back-button>
+      <ion-back-button defaultHref="" (click)="app.handleBackButton($event)"></ion-back-button>
     </ion-buttons>
 
   </ion-toolbar>
@@ -15,23 +15,26 @@
 
   <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
 
-    <ion-segment-button value="generar">
+    <ion-segment-button value="generar" *ngIf="userRole === 'Profesor'">
       <ion-label>Generar Qr</ion-label>
     </ion-segment-button>
 
-    <ion-segment-button value="escanear">
+    <ion-segment-button value="escanear" *ngIf="userRole === 'Alumno'">
       <ion-label>Escanear QR</ion-label>
     </ion-segment-button>
 
 
   </ion-segment>
 
-  
-  
-  <div class="segment" *ngIf="segment === 'generar'">
+  <div class="segment" *ngIf="segment === 'generar' && userRole ==='Profesor'">
     <ion-label>
       <h1>Tus alumnos deben escanear este Qr para registrar su asistencia en esta clase.</h1>
     </ion-label>
+    <ion-select class="custom-select" placeholder="Selecciona una asignatura" [(ngModel)]="selectedAsignatura" (ionChange)="onAsignaturaChange($event)">
+      <ion-select-option *ngFor="let asignatura of asignaturas" [value]="asignatura.id">
+        {{ asignatura.nombre }}
+      </ion-select-option>
+    </ion-select>
     <div class="segment-content">
       <div id="qrImage">
         <div class="d-flex-center">
@@ -39,32 +42,21 @@
             <qr-code *ngIf="qrText" [value]="qrText" size="190" errorCorrectionLevel="M" />
             <img *ngIf="!qrText" class="qr-placeholder" src="assets/img/qr.webp" alt="">
           </div>
-
         </div>
       </div>
-
       
-      <ion-textarea
-        label="Escribe algo para generar un código Qr"
-        labelPlacement="stacked"
-        fill="outline"
-        [(ngModel)]="qrText"
-        rows="4"
-        [autoGrow]="true">
-      </ion-textarea>
     </div>
   </div>
 
-
-  <div class="segment" *ngIf="segment === 'escanear'">
+  <div class="segment" *ngIf="segment === 'escanear' && userRole ==='Alumno'">
     <ion-label>
-      <h1>Escanea este Qr para registrar tu asistencia en esta clase.</h1>
+      <h1>Escanea el Qr proporcionado por tu profesor para registrar tu asistencia en esta clase.</h1>
     </ion-label>
     <div class="segment-content">
       <div id="qrImage">
         <div class="d-flex-center">
           <div class="d-flex-center qr-wrapper">
-            <img class="qr-wrapper" src="assets/img/scan-qr.webp" alt="">
+            <img class="qr-wrapper" src="assets/img/qr.webp" alt="">
           </div>
         </div>
         <ion-row>
@@ -74,30 +66,24 @@
               <ion-icon slot="end" name="scan"></ion-icon>
             </ion-button>
           </ion-col>
-          
         </ion-row>
-
         <ion-item class="result" *ngIf="scanResult" lines="none">
           <ion-label>
             <p>Resultado de Escaneo</p>
-            <div>{{scanResult}}</div>
+            <div>Id Profesor: {{ asistenciaData.idProfesor }}</div>
+            <div>Id Asignatura: {{ asistenciaData.idAsignatura }}</div>
+            <div>Id Alumno:{{ asistenciaData.idAlumno }}</div>
+            <div>Seccion: {{ asistenciaData.seccion }}</div>
+            <div>Fecha: {{ asistenciaData.timestamp | date: 'dd-MM-yyyy' }}</div>
           </ion-label>
           <div slot="end" class="icon-buttons">
             <ion-icon *ngIf="isUrl()" name="globe" (click)="openCapacitorSite()" class="clickable-icon"></ion-icon>
             <ion-icon name="copy" (click)="writeToClipboard()" class="clickable-icon"></ion-icon>
           </div>
         </ion-item>
+
+
       </div>
     </div>
   </div>
-  
-
-
-
-          
-
 </ion-content>
-
-
-
-

@@ -5,9 +5,9 @@ import { LoadingController, ToastController } from '@ionic/angular';
   providedIn: 'root'
 })
 export class InteractionService {
-  loading: any;
+  private loading: HTMLIonLoadingElement | null = null;
 
-  constructor(public toastController: ToastController, public loadingController: LoadingController) { }
+  constructor(public toastController: ToastController,private loadingController: LoadingController) {}
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({
@@ -18,14 +18,20 @@ export class InteractionService {
   }
 
   async presentLoading(message: string) {
+    if (this.loading) {
+      await this.loading.dismiss();
+    }
     this.loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-      message: message,
+      message,
+      spinner: 'crescent'
     });
     await this.loading.present();
   }
 
   async closeLoading() {
-    await this.loading.dismiss();
+    if (this.loading) {
+      await this.loading.dismiss();
+      this.loading = null;
+    }
   }
 }

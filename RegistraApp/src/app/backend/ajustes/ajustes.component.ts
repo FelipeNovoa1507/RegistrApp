@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { Resultado } from 'src/app/models/models.component';
+import { Asignatura, Asistencia, Usuario } from 'src/app/models/models.component';
 import { AuthService } from 'src/app/service/auth.service';
 import { FirestoreService } from 'src/app/service/firestore.service';
 import { InteractionService } from 'src/app/service/interaction.service';
@@ -11,24 +12,41 @@ import { InteractionService } from 'src/app/service/interaction.service';
   styleUrls: ['./ajustes.component.scss'],
 })
 export class AjustesComponent  implements OnInit {
-  resultados: Resultado[] = [];
+  resultados: Usuario[] = [];
+  asignaturas: Asignatura[] = []; 
 
-  public data: Resultado = {
-    usuario: {
+  public Usuario = {
       id: '',
+      idAlumno: '',
+      idProfesor: '',
       nombre: '',
       apellido: '',
       rut: '',
       edad: 0,
       correo: '',
       carrera: '',
-      semestre: '',
       password: '',
       genero: '',
+      seccion: '',
       tipo: ''
-    }
+  }
+
+  public Clase= {
+    id:'',
+    claseId:'',
+    nombe:'',
+    fecha:''
 
   }
+
+  public Asignatura = {
+    id: '',
+    nombre: '',
+    codigo: '',
+    seccion: ''
+  }
+
+
 
   constructor(
     private authService: AuthService,
@@ -42,18 +60,19 @@ export class AjustesComponent  implements OnInit {
     this.getResultados();
   }
 
+
    async crearNuevoResultado(){
-    console.log('data', this.data);
+    console.log('data', this.Usuario);
     this.interaction.presentLoading('Guardando...');
-    const usuario = await this.authService.createUser(this.data.usuario).catch((error) => {
+    const usuario = await this.authService.createUser(this.Usuario).catch((error) => {
       console.log('error', error);
     });
     if (usuario) {
       console.log('usuario creado');
       const path = 'Usuarios'
       const id= this.database.getId(); 
-      this.data.usuario.id = id;
-      this.database.crearDoc(this.data, path, id).then((res) => {
+      this.Usuario.id = id;
+      this.database.crearDoc(this.Usuario, path, id).then((res) => {
         console.log('guardado con exito', res);
         this.interaction.closeLoading();
         this.interaction.presentToast('Guardado con éxito');
@@ -68,9 +87,11 @@ export class AjustesComponent  implements OnInit {
 
 
   getResultados(){
-    this.database.getResultados<Resultado>('Usuarios').subscribe(res => {
+    this.database.getResultados<Usuario>('Usuarios').subscribe(res => {
       console.log('esta es la lectura de datos:  ', res);
       this.resultados = res;
     })
   }
+
+  
 }

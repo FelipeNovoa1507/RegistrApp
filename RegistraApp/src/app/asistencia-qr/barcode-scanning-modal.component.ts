@@ -16,7 +16,12 @@ import {
   StartScanOptions,
 } from '@capacitor-mlkit/barcode-scanning';
 import { ModalController } from '@ionic/angular';
-
+import { AuthService } from '../service/auth.service'; // Importa el servicio de autenticación
+import { Subscription } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { InteractionService } from '../service/interaction.service';
+import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-barcode-scanning',
@@ -44,6 +49,7 @@ import { ModalController } from '@ionic/angular';
           <ion-icon name="flashlight"></ion-icon>
         </ion-fab-button>
       </ion-fab>
+      
     </ion-content>
   `,
   styles: [
@@ -77,15 +83,23 @@ export class BarcodeScanningModalComponent
   public squareElement: ElementRef<HTMLDivElement> | undefined;
 
   public isTorchAvailable = false;
+  public userData: any;
+  asistenciaData: any;
+  private userSubscription: Subscription | undefined;
 
   constructor(
     private readonly ngZone: NgZone,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private authService: AuthService,// Inyecta el servicio de autenticación
+    private firestore: AngularFirestore, // Inyecta el servicio de Firestore
+    private interaction: InteractionService,
+    private router: Router
+
   ) {}
-    dismiss() {
-      this.modalController.dismiss();
-    }
-   
+
+  dismiss() {
+    this.modalController.dismiss();
+  }
 
   public ngOnInit(): void {
     BarcodeScanner.isTorchAvailable().then((result) => {
@@ -101,10 +115,62 @@ export class BarcodeScanningModalComponent
 
   public ngOnDestroy(): void {
     this.stopScan();
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+  }
+
+  public asistencia = {};
+  public datosAsistencia(){
+
   }
 
   public async closeModal(barcode?: Barcode): Promise<void> {
-    this.modalController.dismiss({ barcode });
+    this.interaction.presentLoading('Registrando asistencia');
+    if (barcode) {
+      try {
+        const qrData = JSON.parse(barcode.displayValue);
+        const { idProfesor, idAsignatura } = qrData;
+
+        // Obtener datos del usuario
+        this.authService.getUserRole();
+        this.authService.userRole.pipe(take(1)).subscribe((role) => {
+          this.userData = {
+            seccion: this.authService.userSeccionSubject.getValue(),
+            idAlumno: this.authService.userIdAlumnoSubject.getValue(),
+          };
+
+          // Guardar los datos en Firestore
+          this.asistenciaData = {
+            idProfesor,
+            idAsignatura,
+            idAlumno: this.userData.idAlumno,
+            seccion: this.userData.seccion,
+            timestamp: new Date()
+          };
+
+          this.firestore.collection('AsistenciaAlumno').doc(this.firestore.createId()).set(this.asistenciaData).then(() => {
+            this.interaction.closeLoading();
+            this.interaction.presentToast('Asistencia registrada con éxito');
+            this.modalController.dismiss({
+              barcode,
+              userData: this.userData,
+              asistenciaData: this.asistenciaData // Pasar asistenciaData al cerrar el modal
+            });
+          }).catch((error) => {
+            console.error('Error al crear el documento:', error);
+            this.interaction.closeLoading();
+            this.interaction.presentToast('Error al registrar la asistencia');
+          });
+        });
+      } catch (error) {
+        console.error('Error al procesar el QR:', error);
+        this.interaction.presentToast('Error al procesar el QR');
+        this.modalController.dismiss();
+      }
+    } else {
+      this.modalController.dismiss();
+    }
   }
 
   public async toggleTorch(): Promise<void> {
@@ -124,28 +190,28 @@ export class BarcodeScanningModalComponent
       this.squareElement?.nativeElement.getBoundingClientRect();
     const scaledRect = squareElementBoundingClientRect
       ? {
-        left: squareElementBoundingClientRect.left * window.devicePixelRatio,
-        right:
-          squareElementBoundingClientRect.right * window.devicePixelRatio,
-        top: squareElementBoundingClientRect.top * window.devicePixelRatio,
-        bottom:
-          squareElementBoundingClientRect.bottom * window.devicePixelRatio,
-        width:
-          squareElementBoundingClientRect.width * window.devicePixelRatio,
-        height:
-          squareElementBoundingClientRect.height * window.devicePixelRatio,
-      }
+          left: squareElementBoundingClientRect.left * window.devicePixelRatio,
+          right:
+            squareElementBoundingClientRect.right * window.devicePixelRatio,
+          top: squareElementBoundingClientRect.top * window.devicePixelRatio,
+          bottom:
+            squareElementBoundingClientRect.bottom * window.devicePixelRatio,
+          width:
+            squareElementBoundingClientRect.width * window.devicePixelRatio,
+          height:
+            squareElementBoundingClientRect.height * window.devicePixelRatio,
+        }
       : undefined;
     const detectionCornerPoints = scaledRect
       ? [
-        [scaledRect.left, scaledRect.top],
-        [scaledRect.left + scaledRect.width, scaledRect.top],
-        [
-          scaledRect.left + scaledRect.width,
-          scaledRect.top + scaledRect.height,
-        ],
-        [scaledRect.left, scaledRect.top + scaledRect.height],
-      ]
+          [scaledRect.left, scaledRect.top],
+          [scaledRect.left + scaledRect.width, scaledRect.top],
+          [
+            scaledRect.left + scaledRect.width,
+            scaledRect.top + scaledRect.height,
+          ],
+          [scaledRect.left, scaledRect.top + scaledRect.height],
+        ]
       : undefined;
     const listener = await BarcodeScanner.addListener(
       'barcodeScanned',
@@ -181,7 +247,3 @@ export class BarcodeScanningModalComponent
     await BarcodeScanner.stopScan();
   }
 }
-function dismiss() {
-  throw new Error('Function not implemented.');
-}
-

@@ -10,6 +10,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AjustesComponent } from './backend/ajustes/ajustes.component';
+import { AuthGuard } from './service/auth-guard.service';
+
 
 @NgModule({
   declarations: [AppComponent, AjustesComponent],
@@ -23,7 +25,8 @@ import { AjustesComponent } from './backend/ajustes/ajustes.component';
     AngularFirestoreModule
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AuthGuard
   ],
   exports: [AjustesComponent],
   bootstrap: [AppComponent],

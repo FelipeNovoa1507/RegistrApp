@@ -18,7 +18,7 @@
             [(ngModel)]="credenciales.correo"
             type="text"
             placeholder="Ingrese su Usuario"
-            label="Usuario:"
+            label="Correo:"
             labelPlacement="floating"
             errorText="Correo inválido"
             class="custom-input">
@@ -40,7 +40,7 @@
           </div>
     
           <div class="checkbox-wrapper">
-            <ion-checkbox></ion-checkbox>
+            <ion-checkbox [(ngModel)]="rememberMe"></ion-checkbox>
             <ion-label>Recordar sesión</ion-label>
           </div>
           

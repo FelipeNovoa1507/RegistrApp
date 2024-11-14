@@ -5,45 +5,34 @@
     </ion-buttons>
     <ion-title>Asignaturas</ion-title>
     <ion-buttons slot="end">
-      <ion-back-button defaultHref="main"></ion-back-button>
+      <ion-back-button defaultHref="" (click)="app.handleBackButton($event)"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="light">
-  <ion-list :inset="true">
-    <ion-list-header class="header-item" >
-      <ion-label>Asignatura</ion-label>
-      <ion-label id="seccion">Sección</ion-label>
-    </ion-list-header> 
-    <ion-item>
-      <ion-label>Arquitectura</ion-label>
-      <ion-label slot="end">005D</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="ion-text-nowrap">Calidad De Software</ion-label>
-      <ion-label slot="end">004D</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="ion-text-nowrap">Estadistica Descriptiva</ion-label>
-      <ion-label slot="end">004D</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="ion-text-nowrap">Etica Para El Trabajo</ion-label>
-      <ion-label slot="end">001D</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="ion-text-nowrap">Ingles Intermedio</ion-label>
-      <ion-label slot="end">013D</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="ion-text-nowrap">Proceso De Portafolio 4</ion-label>
-      <ion-label slot="end">005D</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="ion-text-nowrap">Programacion De Aplicaciones Moviles</ion-label>
-      <ion-label slot="end">004D</ion-label>
-    </ion-item>
-    
-  </ion-list>
+  <div value="escanear" *ngIf="userRole === 'Alumno'">
+    <ion-list inset="true">
+      <ion-list-header class="header-item">
+        <ion-label>Asignatura</ion-label>
+        <ion-label id="seccion">Sección</ion-label>
+      </ion-list-header> 
+      <ion-item *ngFor="let asignatura of asignaturas | async | filterBySeccion: userSeccion">
+        <ion-label>{{ asignatura.nombre }}</ion-label>
+        <ion-label slot="end">{{ asignatura.seccion }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div value="generar" *ngIf="userRole === 'Profesor'">
+    <ion-list inset="true">
+      <ion-list-header class="header-item">
+        <ion-label>Asignatura</ion-label>
+        <ion-label id="seccion">Sección</ion-label>
+      </ion-list-header> 
+      <ion-item *ngFor="let asignatura of asignaturas | async | filterByIdProfe: userIdProfe">
+        <ion-label>{{ asignatura.nombre }}</ion-label>
+        <ion-label slot="end">{{ asignatura.seccion }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
