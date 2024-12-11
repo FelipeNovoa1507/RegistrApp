@@ -46,6 +46,10 @@ export class FirestoreService {
     return data.valueChanges();
   }
 
+  getAsistenciasByAlumno(idAlumno: string): Observable<any[]> {
+    return this.firestore.collection('AsistenciaAlumno', ref => ref.where('idAlumno', '==', idAlumno)).valueChanges();
+  }
+
   getCollectionQuery<tipo>(path: string, parametro: string, value: string) {
     const data: AngularFirestoreCollection<tipo> = 
       this.firestore.collection<tipo>(path, ref => ref.where(parametro, '==', value));

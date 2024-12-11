@@ -106,7 +106,7 @@
               errorText="Formato de contraseña incorrecto"
               required>
             </ion-input>
-            <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="togglePasswordVisibility()">
+            <ion-button fill="clear" slot="end" class="password-toggle-button" id="togglePasswordVisibilityButton" (click)="togglePasswordVisibility()">
               <ion-icon [name]="passwordIcon"></ion-icon>
             </ion-button>
           </div>
@@ -122,8 +122,8 @@
               errorText="Las contraseñas no coinciden"
               required>
             </ion-input>
-            <ion-button fill="clear" slot="end" class="password-toggle-button" (click)="toggleConfirmPasswordVisibility()">
-              <ion-icon [name]="confirmPasswordIcon"></ion-icon>
+            <ion-button fill="clear" slot="end" class="password-toggle-button" id="togglePasswordVisibilityButton" (click)="togglePasswordVisibility()">
+              <ion-icon [name]="passwordIcon"></ion-icon>
             </ion-button>
           </div>
       

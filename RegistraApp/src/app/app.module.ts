@@ -11,8 +11,6 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AjustesComponent } from './backend/ajustes/ajustes.component';
 import { AuthGuard } from './service/auth-guard.service';
-
-
 @NgModule({
   declarations: [AppComponent, AjustesComponent],
   imports: [

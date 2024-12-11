@@ -11,6 +11,7 @@ import { AppComponent } from '../app.component';
   selector: 'app-asignaturas',
   templateUrl: './asignaturas.page.html',
   styleUrls: ['./asignaturas.page.scss'],
+  providers: [AppComponent]
 })
 export class AsignaturasPage implements OnInit, OnDestroy {
   segment: string = '';

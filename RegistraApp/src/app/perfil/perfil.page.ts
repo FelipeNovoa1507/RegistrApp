@@ -8,6 +8,7 @@ import { InteractionService } from '../service/interaction.service';
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
+  providers: [AppComponent]
 })
 export class PerfilPage implements OnInit, OnDestroy {
 
